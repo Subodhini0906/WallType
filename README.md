@@ -1,6 +1,6 @@
 # WallType
 
-Say hello to your screen’s new best friend! Built with React, this clever wallpaper app syncs with your location and tracks solar magic—sunrise, golden hour, sunset—to transform your desktop throughout the day. It’s like your device finally figured out what time it is... and decided to dress accordingly.
+Say hello to your screen’s new best friend! Built with React, this clever wallpaper app syncs with your location and tracks solar magic sunrise, golden hour, sunset to transform your desktop throughout the day. It’s like your device finally figured out what time it is... and decided to dress accordingly.
 
 ---
 
