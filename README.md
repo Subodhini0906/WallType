@@ -4,17 +4,6 @@ Say hello to your screen’s new best friend! Built with React, this clever wall
 
 ---
 
-## ✨ Features
-
-- 📍 Location-aware sunlight tracking (sunrise, sunset, noon, etc.)
-- 🎨 Dynamic wallpaper switching throughout the day
-- 🧩 Custom wallpaper pack support (ZIP upload)
-- 🌐 Online gallery integration for downloading themes
-- 🔄 Automatic updates and caching via localStorage
-- 📦 Built with React + SunCalc + TailwindCSS
-
----
-
 ## 🧰 Tech Stack
 
 - [React](https://reactjs.org)
