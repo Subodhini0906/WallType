@@ -1,12 +1,23 @@
-# React + Vite
+# WallType
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Say hello to your screen’s new best friend! Built with React, this clever wallpaper app syncs with your location and tracks solar magic sunrise, golden hour, sunset to transform your desktop throughout the day. It’s like your device finally figured out what time it is... and decided to dress accordingly.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧰 Tech Stack
 
-## Expanding the ESLint configuration
+- [React](https://reactjs.org)
+- [SunCalc](https://github.com/mourner/suncalc)
+- [Tailwind CSS](https://tailwindcss.com)
+- [React Dropzone](https://react-dropzone.js.org/)
+- [Axios](https://axios-http.com)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/your-username/WallType.git
+cd dynamic-wallpaper-engine
+npm install
+npm start
