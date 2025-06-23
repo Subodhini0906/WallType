@@ -17,7 +17,7 @@ Say hello to your screen’s new best friend! Built with React, this clever wall
 ## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/your-username/dynamic-wallpaper-engine.git
+git clone https://github.com/your-username/WallType.git
 cd dynamic-wallpaper-engine
 npm install
 npm start
