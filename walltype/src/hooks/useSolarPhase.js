@@ -1,10 +1,37 @@
-import SunCalc from 'suncalc';
-export function useSolarPhase(coords){
-    const now=new Date();
-    const times=SunCalc.getTimes(now,coords.lat,coords.lon);
-    if(now<times.sunrise) return 'night';
-    if(now<times.goldenHourEnd) return 'sunrise';
-    if(now<times.sunsetStart) return 'day';
-    if(now<times.dusk) return 'sunset';
-    return 'night';
+/* eslint-disable no-undef */
+import { useState,useEffect } from "react";
+import SunCalc from 'suncalc'
+import getPhaseFromTime from '../utils/getPhaseFromTime';
+
+export default function useSolarPhase(){
+    const[phase,setPhase]=useState('day');
+    useEffect(()=>{
+        isMounted=true;
+        navigator.geolocation.getCurrentPosition(
+            ({coords})=>{
+                const{latitude,longitude}=coords;
+                const times=SunCalc.getTimes(newDate(),latitude,longitude);
+                const tms={
+                    dawn:times.nauticalDawn.getTime(),
+                    sunrise:times.sunrise.getTime(),
+                    sunset:times.sunset.getTime(),
+                    dusk:times.nauticalDusk.getTime()
+                };
+                function update(){
+                    if(isMounted){
+                        setPhase(getPhaseFromTime(tms,newDate()));
+                    }
+                }
+                update();
+                const id=setInterval(update,60*1000);
+                return()=>{
+                    clearInterval(id);
+                    isMounted=false;
+                };
+            },
+            (err)=>console.error('Geolocation error:',err),
+            {enableHighAccuracy:false}
+        );
+    },[]);
+    return phase;
 }
