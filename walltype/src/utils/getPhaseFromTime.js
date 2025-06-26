@@ -1,4 +1,4 @@
-export function getPhaseFromTime({sunrise,sunset,dawn,dusk},now=new Date()){
+export default function getPhaseFromTime({sunrise,sunset,dawn,dusk},now=new Date()){
     const t=now.getTime();
     if(t>=dawn && t<sunrise) return 'dawn';
     if(t>=sunrise && t<sunset-60*60*1000) return 'day';
