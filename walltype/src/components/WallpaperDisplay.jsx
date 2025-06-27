@@ -36,7 +36,7 @@ export default function WallpaperDisplay() {
       }, 1000);
       return () => clearTimeout(timeout);
     }
-  }, [phase, phaseImage]);
+  }, [currentImage, phase, phaseImage]);
 
   const handleUpload = (imageData) => {
     setUserImages((prev) => ({
