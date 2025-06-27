@@ -2,23 +2,8 @@ import { useState, useEffect } from "react";
 import SunCalc from 'suncalc';
 import getPhaseFromTime from '../utils/getPhaseFromTime';
 
-export default function useSolarPhase() {
+export default function useSolarPhase(coords) {
   const [phase, setPhase] = useState('day');
-  const [coords, setCoords] = useState(null);
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
-        const { latitude, longitude } = coords;
-        setCoords({ latitude, longitude });
-      },
-      (err) => {
-        console.error('Geolocation error:', err);
-        setPhase('night'); // fallback
-      },
-      { enableHighAccuracy: false }
-    );
-  }, []);
 
   useEffect(() => {
     if (!coords) return;
@@ -26,25 +11,33 @@ export default function useSolarPhase() {
     let isMounted = true;
 
     function update() {
-      if (isMounted) {
-        const times = SunCalc.getTimes(new Date(), coords.latitude, coords.longitude);
-        const tms = {
-          dawn: times.nauticalDawn.getTime(),
-          sunrise: times.sunrise.getTime(),
-          sunset: times.sunset.getTime(),
-          dusk: times.nauticalDusk.getTime(),
-        };
-        const newPhase = getPhaseFromTime(tms, new Date());
-        setPhase(newPhase);
-      }
+      const now = new Date();
+      const times = SunCalc.getTimes(now, coords.latitude, coords.longitude);
+
+      console.log('✅ Now:', now);
+      console.log('🌄 Dawn:', times.nauticalDawn);
+      console.log('🌅 Sunrise:', times.sunrise);
+      console.log('🌇 Sunset:', times.sunset);
+      console.log('🌃 Dusk:', times.nauticalDusk);
+
+      const tms = {
+        dawn: times.nauticalDawn?.getTime() || 0,
+        sunrise: times.sunrise?.getTime() || 0,
+        sunset: times.sunset?.getTime() || 0,
+        dusk: times.nauticalDusk?.getTime() || 0,
+      };
+
+      const newPhase = getPhaseFromTime(tms, now);
+      console.log('🟢 Phase:', newPhase);
+
+      if (isMounted) setPhase(newPhase);
     }
 
-    update(); // run immediately
-    const intervalId = setInterval(update, 60 * 1000);
-
+    update();
+    const id = setInterval(update, 60000);
     return () => {
       isMounted = false;
-      clearInterval(intervalId);
+      clearInterval(id);
     };
   }, [coords]);
 

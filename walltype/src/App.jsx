@@ -2,11 +2,11 @@ import useSolarPhase from './hooks/useSolarPhase';
 import WallpaperDisplay from './components/WallpaperDisplay';
 
 const phaseImages = {
-  dawn: '/nght.jpg',
-  day: '/Day1.jpg',
-  golden: '/day2.jpg',
-  dusk: '/night1.jpg',
-  night: '/day.jpg'
+  dawn: './day.jpg',
+  day: './day2.jpg',
+  golden: './nght.jpg',
+  dusk: './nght1.jpg',
+  night: './Day1.jpg',
 };
 
 function App() {

@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useSolarPhase from '../hooks/useSolarPhase';
 import DropzoneUploader from './DropzoneUploader';
+import LocationSelector from './LocationSelector';
 import './WallpaperDisplay.css';
 
 const defaultPhaseImages = {
-  dawn: '/wallpapers/dawn.jpg',
-  day: '/wallpapers/day.jpg',
-  golden: '/wallpapers/golden.jpg',
-  dusk: '/wallpapers/dusk.jpg',
-  night: '/wallpapers/night.jpg',
+  dawn: './day.jpg',
+  day: './day2.jpg',
+  golden: './nght.jpg',
+  dusk: './nght1.jpg',
+  night: './Day1.jpg',
 };
 
 export default function WallpaperDisplay() {
-  const phase = useSolarPhase();
+  const [coords, setCoords] = useState({ latitude: 28.6139, longitude: 77.2090 }); // default New Delhi
+  const phase = useSolarPhase(coords);
+
   const [userImages, setUserImages] = useState({});
   const [currentImage, setCurrentImage] = useState(defaultPhaseImages[phase]);
   const [previousImage, setPreviousImage] = useState(null);
@@ -21,23 +24,21 @@ export default function WallpaperDisplay() {
   const phaseImage = userImages[phase] || defaultPhaseImages[phase];
 
   useEffect(() => {
-    const newImage = phaseImage;
-    if (newImage !== currentImage) {
-      setPreviousImage(currentImage);
-      setCurrentImage(newImage);
-      setIsFading(true);
+    if (!phaseImage) return;
 
+    if (phaseImage !== currentImage) {
+      setPreviousImage(currentImage);
+      setCurrentImage(phaseImage);
+      setIsFading(true);
       const timeout = setTimeout(() => {
         setPreviousImage(null);
         setIsFading(false);
       }, 1000);
-
       return () => clearTimeout(timeout);
     }
-  }, [currentImage, phase, phaseImage, userImages]);
+  }, [phase, phaseImage]);
 
   const handleUpload = (imageData) => {
-    // Replace current phase image with uploaded one
     setUserImages((prev) => ({
       ...prev,
       [phase]: imageData,
@@ -59,9 +60,11 @@ export default function WallpaperDisplay() {
         />
       </div>
 
+      <LocationSelector onLocationChange={setCoords} />
+
       <div className="absolute bottom-4 left-4 w-64">
         <DropzoneUploader onUpload={handleUpload} />
-        <p className="mt-2 text-white">Uploading replaces wallpaper for: <strong>{phase}</strong></p>
+        <p className="mt-2 text-white">Current Phase: <strong>{phase}</strong></p>
       </div>
     </>
   );
