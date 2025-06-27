@@ -5,11 +5,11 @@ import LocationSelector from './LocationSelector';
 import './WallpaperDisplay.css';
 
 const defaultPhaseImages = {
-  dawn: './day.jpg',
-  day: './day2.jpg',
-  golden: './nght.jpg',
-  dusk: './nght1.jpg',
-  night: './Day1.jpg',
+  dawn: './dawn.jpg',
+  day: './day.jpg',
+  golden: './golden.jpg',
+  dusk: './dusk.jpg',
+  night: './night.jpg',
 };
 
 export default function WallpaperDisplay() {

@@ -2,8 +2,8 @@ import useSolarPhase from './hooks/useSolarPhase';
 import WallpaperDisplay from './components/WallpaperDisplay';
 
 const phaseImages = {
-  dawn: './day.jpg',
-  day: './day2.jpg',
+  dawn: './dawn.jpg',
+  day: './day.jpg',
   golden: './nght.jpg',
   dusk: './nght1.jpg',
   night: './Day1.jpg',
